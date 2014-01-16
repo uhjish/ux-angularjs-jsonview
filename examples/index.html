@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebUX AngularJS JSON Viewer</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../ux-jsonview.css"/>
+    <style>
+        body {
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+<h1>AngularJS JSON Viewer</h1>
+<div ng-app="myApp">
+    <div ng-controller="myController">
+        <div style="margin:10px 0 10px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
+            <a href="" ng-click="changeProp()">Change Data</a>
+        </div>
+
+        <div ux-jsonview="{showPaths:true}" ng-model="sampleData"></div>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+<script src="../ux-jsonview.js"></script>
+<script>
+    function Simple() {
+        this.name = 'simple';
+        this.version = "2.0.3";
+    }
+
+    Simple.prototype.baseClass = 'Atom';
+
+    var data = {
+        "label": "Hello world",
+        "obj": {
+            "val1": "First val",
+            "val2": 123,
+            "val3": true,
+            "nullVal": null,
+            "undefinedVal": undefined
+        },
+        "list": [
+            1,
+            "two",
+            {
+                "label": 3,
+                "more" : [
+                    'Rob',
+                    {
+                        lastName: 'Taylor'
+                    }
+                ]
+            },
+            true
+        ],
+        simpleInst: new Simple()
+    };
+</script>
+<script>
+    (function () {
+        //angular module
+        var myApp = angular.module('myApp', ['ux']);
+
+        //test controller
+        myApp.controller('myController', function ($scope) {
+            $scope.sampleData = data;
+            var counter = 1;
+            $scope.changeProp = function () {
+                $scope.sampleData.list[2].more[1].lastName += 1;
+                $scope.sampleData.label = 'Goodbye, ;(';
+                $scope.sampleData.simpleInst.name = 'complex' + counter++;
+                $scope.sampleData.list.push('Another Item');
+            }
+        });
+    })();
+</script>
+</body>
+</html>
