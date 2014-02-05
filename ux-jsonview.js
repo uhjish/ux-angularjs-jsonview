@@ -1,15 +1,6 @@
-/**
- * Author: Rob Taylor
- * Fork of angular.treeview.js
- * @license Angular Treeview version 0.1.6
- * ⓒ 2013 AHN JAE-HA http://github.com/eu81273/angular.treeview
- * License: MIT
- */
-/* global define, require */
-define(['angular'], function (angular) {
-    "use strict";
-
-    var module = angular.module('ux');
+/* global angular */
+(function () {
+    'use strict';
 
     var template = '<ul class="jsonTree">' +
         '<li ng-repeat="(nodeLabel, nodeValue) in jsonData track by nodeLabel" json-node="node">' +
@@ -25,7 +16,7 @@ define(['angular'], function (angular) {
         '<div ng-switch="desc.type" class="node" ng-class="desc.selected"' +
         'ng-mouseup="toggleExpand(desc)" ng-mousedown="select(desc)">' +
 
-        '<span class="node-label" ng-bind="nodeLabel"></span>: ' +
+        '<span class="node-label" ng-bind="nodeLabel"></span>:' +
 
         '<div style="display: inline-block" ng-switch-when="array">' +
         'Array[{{desc.data.length}}]</div>' +
@@ -52,6 +43,8 @@ define(['angular'], function (angular) {
         '<div ux-jsonview ng-model="desc.children"></div>' +
         '</li>' +
         '</ul>';
+
+    var module = angular.module('ux', []);
 
     module.directive('jsonNode', function () {
         return {
@@ -152,7 +145,7 @@ define(['angular'], function (angular) {
                         scope.activeNode = node;
                     };
 
-                    scope.$watch(attrs.uxJsonview, function (opts) {
+                    scope.$watch(attrs.uxJsonview, function(opts){
                         scope.opts = opts;
                     });
                 }
@@ -166,4 +159,4 @@ define(['angular'], function (angular) {
             }
         };
     }]);
-});
+}());
