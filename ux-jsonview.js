@@ -43,9 +43,9 @@ var template = '<ul class="jsonTree">' +
     '</li>' +
     '</ul>';
 
-var module = angular.module('ux', []);
+angular.module('ux', [])
 
-module.directive('jsonNode', function () {
+.directive('jsonNode', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -112,7 +112,7 @@ module.directive('jsonNode', function () {
     };
 });
 
-module.directive('uxJsonview', ['$compile', function ($compile) {
+.directive('uxJsonview', ['$compile', function ($compile) {
     return {
         require: 'ngModel',
         restrict: 'A',
