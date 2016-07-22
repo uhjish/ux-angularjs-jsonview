@@ -163,7 +163,7 @@
 	// Export to CommonJS style imports. Exporting this string makes this valid:
 	// angular.module('myApp', [require('jsonformatter')]);
 	if (typeof module === 'object') {
-		module.exports = 'jsonFormatter';
+		module.exports = 'uxJsonview';
 	}
 
 }
