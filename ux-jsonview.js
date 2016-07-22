@@ -110,7 +110,7 @@ angular.module('ux', [])
             });
         }
     };
-});
+})
 
 .directive('uxJsonview', ['$compile', function ($compile) {
     return {
