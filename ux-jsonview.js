@@ -139,9 +139,11 @@ angular.module('jsonview', [])
                 scope.select = function (node) {
                     if (scope.activeNode && scope.activeNode.selected) {
                         scope.activeNode.selected = undefined;
+                        scope.$broadcast('jsonview:deselectNode', node);
                     }
                     node.selected = 'selected';
                     scope.activeNode = node;
+                    scope.$broadcast('jsonview:selectNode', node);
                 };
 
                 scope.$watch(attrs.uxJsonview, function(opts){
@@ -151,7 +153,7 @@ angular.module('jsonview', [])
 
             scope.$watch(attrs.ngModel, function (data) {
                 scope.jsonData = data;
-                scope.$broadcast('updateNode');
+                scope.$broadcast('jsonview:updateNode');
             }, true);
 
             element.html('').append($compile(scope.template)(scope));
