@@ -43,7 +43,7 @@ var template = '<ul class="jsonTree">' +
     '</li>' +
     '</ul>';
 
-angular.module('ux', [])
+angular.module('jsonview', [])
 
 .directive('jsonNode', function () {
     return {
@@ -162,6 +162,6 @@ angular.module('ux', [])
 // Export to CommonJS style imports. Exporting this string makes this valid:
 // angular.module('myApp', [require('jsonformatter')]);
 if (typeof module === 'object') {
-  module.exports = 'uxJsonview';
+  module.exports = 'jsonview';
 }
 
